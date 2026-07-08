@@ -41,6 +41,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: npm
           command: pages project create browser-agent-loop --production-branch=feat/browser-agent-loop
         continue-on-error: true
 
@@ -49,4 +50,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: npm
           command: pages deploy explorations/mastra-browser-loop/dist --project-name=browser-agent-loop --branch=${{ github.ref_name }} --commit-dirty=true
