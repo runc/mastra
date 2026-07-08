@@ -36,19 +36,18 @@ jobs:
       - name: Build
         run: pnpm --filter @explorations/mastra-browser-loop build
 
+      - name: Install Wrangler
+        run: npm install -g wrangler@3
+
       - name: Create Pages project (if missing)
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          packageManager: npm
-          command: pages project create browser-agent-loop --production-branch=feat/browser-agent-loop
+        run: wrangler pages project create browser-agent-loop --production-branch=feat/browser-agent-loop
         continue-on-error: true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          packageManager: npm
-          command: pages deploy explorations/mastra-browser-loop/dist --project-name=browser-agent-loop --branch=${{ github.ref_name }} --commit-dirty=true
+        run: wrangler pages deploy explorations/mastra-browser-loop/dist --project-name=browser-agent-loop --branch=${{ github.ref_name }} --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
