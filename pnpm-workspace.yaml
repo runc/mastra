@@ -23,6 +23,7 @@ packages:
   - channels/*
   - explorations/longmemeval
   - explorations/agent-builder-gh-repro
+  - explorations/mastra-browser-loop
   - e2e-tests/client-js/_test-utils
   - e2e-tests/client-js/zod-v3
   - e2e-tests/client-js/zod-v4
@@ -36,8 +37,8 @@ catalog:
   '@vitest/coverage-v8': 4.1.8
   '@vitest/ui': 4.1.8
   date-fns: 4.4.0
-  react: ^19.2.5
-  react-dom: ^19.2.5
+  react: ^19.2.6
+  react-dom: ^19.2.6
   typescript: ^6.0.3
   vitest: 4.1.8
   zod: ^4.4.3

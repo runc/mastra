@@ -1,0 +1,123 @@
+@import 'tailwindcss';
+
+/* ── Design tokens (vendored from @mastra/playground-ui/theme.css) ─────── */
+
+:root {
+  /* Dark theme (default) */
+  --surface1: oklch(0% 0 0deg);
+  --surface2: oklch(16% 0 0deg);
+  --surface3: oklch(18% 0 0deg);
+  --surface4: oklch(21.78% 0 0deg);
+  --surface5: oklch(24.35% 0 0deg / 90%);
+  --surface6: oklch(30.92% 0 0deg);
+
+  --accent1: oklch(0.723 0.219 149.579);
+  --accent2: oklch(0.637 0.237 25.331);
+  --accent3: oklch(0.623 0.214 259.815);
+
+  --neutral1: oklch(0.372 0 0);
+  --neutral2: oklch(0.553 0 0);
+  --neutral3: oklch(0.705 0 0);
+  --neutral4: oklch(0.871 0 0);
+  --neutral5: oklch(0.92 0 0);
+  --neutral6: oklch(0.985 0 0);
+
+  --error: oklch(0.637 0.237 25.331);
+  --border1: oklch(100% 0 0deg / 7%);
+  --border2: oklch(100% 0 0deg / 11%);
+  --surface-overlay-soft: oklch(100% 0 0deg / 4%);
+  --surface-overlay-strong: oklch(100% 0 0deg / 7%);
+
+  /* Semantic aliases */
+  --text1: var(--neutral6);
+  --positive1: var(--accent1);
+  --negative1: var(--accent2);
+  --warning1: oklch(0.769 0.188 70.08);
+
+  /* Font tokens */
+  --font-body: system-ui, ui-sans-serif, sans-serif;
+  --font-mono: ui-monospace, sfmono-regular, menlo, monaco, consolas, monospace;
+  --font-sans: var(--font-body);
+}
+
+/* ── Light theme (class-based, per playground-ui convention) ────────────── */
+
+html.light {
+  --surface1: oklch(95.6% 0 0deg);
+  --surface2: oklch(98.5% 0 0deg);
+  --surface3: oklch(100% 0 0deg);
+  --surface4: oklch(96.5% 0 0deg);
+  --surface5: oklch(94.4% 0 0deg / 94%);
+  --surface6: oklch(89.5% 0 0deg);
+
+  --accent1: oklch(0.627 0.194 149.214);
+  --accent2: oklch(0.577 0.245 27.325);
+  --accent3: oklch(0.546 0.245 262.881);
+
+  --neutral1: oklch(0.554 0 0);
+  --neutral2: oklch(0.446 0 0);
+  --neutral3: oklch(0.372 0 0);
+  --neutral4: oklch(0.279 0 0);
+  --neutral5: oklch(0.208 0 0);
+  --neutral6: oklch(0.13 0 0);
+
+  --error: oklch(0.577 0.245 27.325);
+  --border1: oklch(20.8% 0 0deg / 10%);
+  --border2: oklch(20.8% 0 0deg / 16%);
+  --surface-overlay-soft: oklch(20.8% 0 0deg / 4%);
+  --surface-overlay-strong: oklch(20.8% 0 0deg / 7%);
+}
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── Base styles ────────────────────────────────────────────────────────── */
+
+@layer base {
+  * {
+    border-color: var(--border1);
+  }
+  body {
+    background-color: var(--surface1);
+    color: var(--neutral6);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-body);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, var(--neutral4) 30%, transparent) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: color-mix(in oklab, var(--neutral4) 30%, transparent);
+    border-radius: 9999px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+}
+
+/* ── Animation ─────────────────────────────────────────────────────────── */
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.animate-fade-in {
+  animation: fade-in 200ms ease-out forwards;
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 1.4s ease-in-out infinite;
+}
