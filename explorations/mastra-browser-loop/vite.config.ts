@@ -20,6 +20,7 @@ const STUB_THROW = resolve(root, 'stubs/empty-throw.js')
 const STUB_OBJ = resolve(root, 'stubs/empty-object.js')
 const STUB_ASYNC_HOOKS = resolve(root, 'stubs/async-hooks.js')
 const STUB_CRYPTO = resolve(root, 'stubs/crypto.js')
+const STUB_STRING_DECODER = resolve(root, 'stubs/string-decoder.js')
 
 // Browser-only PoC for @mastra/core agent loop.
 //
@@ -62,7 +63,10 @@ export default defineConfig({
       // Browser-specific stubs.
       { find: /^node:async_hooks$/, replacement: STUB_ASYNC_HOOKS },
       { find: /^async_hooks$/, replacement: STUB_ASYNC_HOOKS },
+      { find: /^url$/, replacement: STUB_OBJ },
       { find: /^node:url$/, replacement: STUB_OBJ },
+      { find: /^string_decoder$/, replacement: STUB_STRING_DECODER },
+      { find: /^node:string_decoder$/, replacement: STUB_STRING_DECODER },
       { find: /^node:os$/, replacement: STUB_OBJ },
       { find: /^os$/, replacement: STUB_OBJ },
 
